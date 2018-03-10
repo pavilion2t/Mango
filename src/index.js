@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom';
 
 function Group02(){
   return <h1>Group02</h1>
@@ -32,9 +32,9 @@ ReactDOM.render(
          <li><Link to='/Group03'>Group03</Link></li>
        </ul>
        <Route path='/' exact component={App}></Route>
-       <Route path='/:location' component={Test}></Route>
-       {/* <Route path='/Group02' component={Group02}></Route>
-       <Route path='/Group03' component={Group03}></Route> */}
+       <Route path='/Group02' component={Group02}></Route>
+       <Route path='/Group03' component={Group03}></Route>
+       <Redirect to='Group03'></Redirect>
      </div>
    </BrowserRouter>,
    document.getElementById('root'));
