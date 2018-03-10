@@ -13,6 +13,16 @@ function Group03(){
   return <h1>Group03</h1>
 }
 
+class Test extends React.Component{
+  constructor(props){
+    super(props)
+  }
+  render(){
+    console.log(this.props)
+    return <h2>test</h2>
+  }
+}
+
 ReactDOM.render(
    <BrowserRouter>
      <div>
@@ -22,8 +32,9 @@ ReactDOM.render(
          <li><Link to='/Group03'>Group03</Link></li>
        </ul>
        <Route path='/' exact component={App}></Route>
-       <Route path='/Group02' component={Group02}></Route>
-       <Route path='/Group03' component={Group03}></Route>
+       <Route path='/:location' component={Test}></Route>
+       {/* <Route path='/Group02' component={Group02}></Route>
+       <Route path='/Group03' component={Group03}></Route> */}
      </div>
    </BrowserRouter>,
    document.getElementById('root'));
