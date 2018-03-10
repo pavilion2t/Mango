@@ -49,4 +49,17 @@ Server has startup warnings:
 cooperate    
 ```   
 npm install mongoose --save    
-```    
+```      
+currently, CRUD  
+后续操作：body-parser支持Post参数，cookie-parser存储登录信息cookie    
+
+Requirement Analysis   
+* User = employee + employer  
+* Login & Registry   
+* Personal Information   
+* Chat Room       
+
+Other:   
+* MongoDB 字段设计  
+* axios 发送异步请求  
+* redux 管理所有数据   
