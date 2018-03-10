@@ -46,20 +46,22 @@ Server has startup warnings:
 2018-03-08T09:32:31.807+0800 I CONTROL  [initandlisten]
 >      
 ```    
-cooperate    
+* Step: 3 Cooperate    
 ```   
 npm install mongoose --save    
 ```      
 currently, CRUD  
 后续操作：body-parser支持Post参数，cookie-parser存储登录信息cookie    
 
-Requirement Analysis   
+* Step: 4 Requirement Analysis   
+```    
 * User = employee + employer  
 * Login & Registry   
 * Personal Information   
-* Chat Room       
+* Chat Room    
+```       
 
-Other:   
+* Step: 5 Other:   
 * MongoDB 字段设计  
 * axios 发送异步请求  
 * redux 管理所有数据      
@@ -67,4 +69,9 @@ Other:
 ```     
 // 简洁好用的发送请求库
 npm install axios --save    
-```   
+```       
+
+* Step: 6 React Router  
+```  
+yarn add react-router-dom
+```
