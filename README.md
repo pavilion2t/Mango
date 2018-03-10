@@ -62,4 +62,9 @@ Requirement Analysis
 Other:   
 * MongoDB 字段设计  
 * axios 发送异步请求  
-* redux 管理所有数据   
+* redux 管理所有数据      
+
+```     
+// 简洁好用的发送请求库
+npm install axios --save    
+```   
