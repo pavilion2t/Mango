@@ -1,40 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom';
+import Auth from './Auth';
+import Dashboard from './Dashboard';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import reducers from './reducer.js'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
-function Group02(){
-  return <h1>Group02</h1>
-}
-
-function Group03(){
-  return <h1>Group03</h1>
-}
-
-class Test extends React.Component{
-  constructor(props){
-    super(props)
-  }
-  render(){
-    console.log(this.props)
-    return <h2>test</h2>
-  }
-}
+let store = createStore(reducers, applyMiddleware(thunk))
 
 ReactDOM.render(
    <BrowserRouter>
-     <div>
-       <ul>
-         <li><Link to='/'>Group01</Link></li>
-         <li><Link to='/Group02'>Group02</Link></li>
-         <li><Link to='/Group03'>Group03</Link></li>
-       </ul>
-       <switch>
-         <Route path='/' exact component={App}></Route>
-         <Route path='/Group02' component={Group02}></Route>
-         <Route path='/Group03' component={Group03}></Route>
-         <Route path=':/location' component={Test}></Route>
-       </switch>
-     </div>
+     <Provider store={store}>
+       <Switch>
+         <Route path='/login' exact component={Auth}></Route>
+         <Route path='/dashboard' component={Dashboard}></Route>
+         <Redirect to='/dashboard'></Redirect>
+       </Switch>
+     </Provider>
    </BrowserRouter>,
-   document.getElementById('root'));
+document.getElementById('root'));
