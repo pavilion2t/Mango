@@ -13,11 +13,12 @@ class AuthRoute extends React.Component{
     // get userInfo  (type? info?)
     axios.get('/user/info').
       then(res => {
-        if (res.status === 200){
-          if(res.data.code===0){
+        if (res.status == 200){
+          if(res.data.code==0){
             // has login info
           }else{
-            this.props.history.push('./history')
+            // this.props.history.push('./history')
+            // console.log(this.props.history)
           }
           console.log(res.data)
         }
@@ -26,8 +27,7 @@ class AuthRoute extends React.Component{
   }
 
   render(){
-    return <p>判断跳转</p>
-  }
+    return null
 }
 
 export default AuthRoute

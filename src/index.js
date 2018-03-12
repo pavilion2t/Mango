@@ -12,13 +12,16 @@ import './config'
 import AuthRoute from './component/authroute/authroute'
 
 let store = createStore(reducers, applyMiddleware(thunk))
-
+function Boss(){
+  return <h2>Boss</h2>
+}
 ReactDOM.render(
    <BrowserRouter>
      <Provider store={store}>
        <div>
          <AuthRoute></AuthRoute>
-         <Route path='/login' exact component={Login}></Route>
+         <Route path='/boss' component={Boss}></Route>
+         <Route path='/login' component={Login}></Route>
          <Route path='/register' component={Register}></Route>
        </div>
      </Provider>
