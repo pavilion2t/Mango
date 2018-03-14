@@ -3,7 +3,7 @@ import Logo from '../../component/logo/logo'
 import { List,InputItem,WingBlank,WhiteSpace,Button,Radio } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { register } from '../../redux/user.redux'
-
+import "./index.css"
 @connect(
   state => state.user,
   {register}
@@ -27,7 +27,6 @@ class Register extends React.Component{
   }
 
   handleRegister(){
-    console.log(this.state)
     this.props.register(this.state)
   }
 
@@ -38,7 +37,7 @@ class Register extends React.Component{
         <Logo />
         <h2>注册页</h2>
         <List>
-          {this.props.msg?<p className=""></p>}
+          {this.props.msg?<p className="error-msg">{this.props.msg}</p>:null}
           <InputItem onChange={v => this.handleChange("user",v)}>用户</InputItem>
           <InputItem onChange={v => this.handleChange("pwd",v)} type="password">密码</InputItem>
           <InputItem onChange={v => this.handleChange("repeatpwd",v)} type="password">确认密码</InputItem>

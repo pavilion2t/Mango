@@ -3,7 +3,7 @@ const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 const ERROR_MSG = 'ERROR_MSG'
 
 const initstate = {
-  isAuth: '',
+  isAuth: false,
   msg: '',
   user: '',
   pwd: '',
@@ -20,23 +20,30 @@ export function user(state=initstate, action){
   }
 }
 
+function registerSuccess(data){
+  return {type: REGISTER_SUCCESS, payload:data}
+}
+
 function errorMsg(msg){
   return { msg, type: ERROR_MSG }
 }
 
 export function register({user,pwd,type}){
   if(!user||!pwd||!type){
-    return errorMsg("请输入用户名密码");
+    return errorMsg("请输入用户名and密码");
   }
   if(pwd!==repeatpwd){
     return errorMsg("密码不一致")
   }
-  axios.post('/usr/register', {user,pwd,type})
-    .then(res => {
-      if(res.status == 200 && res.data.code == 0){
 
-      } else {
-
-      }
-    })
+  return dispatch => {
+    axios.post('/usr/register', {user,pwd,type})
+      .then(res => {
+        if(res.status == 200 && res.data.code == 0){
+          dispatch(registerSuccess({user,pwd,type}))
+        } else {
+          dispatch(errorMsg(res.data.msg))
+        }
+      })
+    }
 }

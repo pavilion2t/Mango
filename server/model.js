@@ -24,7 +24,7 @@ for(let m in models){
 
 module.export = {
   getModel: function(name){
-    return mongoose
+    return mongoose.model(name)
   }
 }
 
