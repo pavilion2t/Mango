@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getDirectPath } from '../utils'
+import { getRedirectPath } from '../utils'
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 const ERROR_MSG = 'ERROR_MSG'
@@ -16,9 +16,9 @@ const initstate = {
 export function user(state=initstate, action){
   switch(action.type){
     case REGISTER_SUCCESS:
-      return {...state, msg:'',redirectTo:getDirectPath(action.payload), isAuth: true, ...action.payload}
+      return {...state, msg:'',redirectTo:getRedirectPath(action.payload), isAuth: true, ...action.payload}
     case LOGIN_SUCCESS:
-      return {...state, msg:'',redirectTo:getDirectPath(action.payload), isAuth: true, ...action.payload}
+      return {...state, msg:'',redirectTo:getRedirectPath(action.payload), isAuth: true, ...action.payload}
     case ERROR_MSG:
       return {...state, isAuth: false, msg: action.msg}
     default:
@@ -38,12 +38,12 @@ function errorMsg(msg){
   return { msg, type: ERROR_MSG }
 }
 
-export function login({user,pwd}){
+export function login({user,pwd,type}){
   if(!user||!pwd){
     return errorMsg("need user and pwd!!!")
   }
   return dispatch => {
-    axios.post('/usr/register', {user,pwd,type})
+    axios.post('/usr/login', {user,pwd,type})
       .then(res => {
         if(res.status == 200 && res.data.code == 0){
           dispatch(loginSuccess(res.data.data))
