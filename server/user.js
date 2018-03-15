@@ -9,6 +9,12 @@ Router.get('/list', function(req,res){
     return res.json(doc)
   })
 })
+
+Router.post('./login', function(req,res){
+  //  0910
+}
+
+
 Router.post('./register', function(req,res){
   console.log(req.body.data)
   const {user,pwd,type} = req.body
