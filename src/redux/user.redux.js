@@ -11,6 +11,7 @@ const initstate = {
   user: '',
   pwd: '',
   type: '',
+  repeatpwd:'',
 }
 export function user(state=initstate, action){
   switch(action.type){
