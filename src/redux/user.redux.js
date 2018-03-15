@@ -54,7 +54,7 @@ export function login({user,pwd}){
     }
 }
 
-export function register({user,pwd,type}){
+export function register({user,pwd,repeatpwd,type}){
   if(!user||!pwd||!type){
     return errorMsg("请输入用户名and密码");
   }
