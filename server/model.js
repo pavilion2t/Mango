@@ -5,7 +5,7 @@ mongoose.connect(DB_URL)
 
 const models = {
   user: {
-    'user': {type:String, require:true},
+    // 'user': {type:String, require:true},
     'pwd': {type:String, require:true},
     'type': {type:String, require:true},
 
@@ -22,29 +22,29 @@ for(let m in models){
   mongoose.model(m, new mongoose.Schema(models[m]))
 }
 
-module.export = {
+module.exports = {
   getModel: function(name){
     return mongoose.model(name)
   }
 }
 
 
-mongoose.connection.on('connected', function(){
-  console.log("mongo connect success")
-})
-// 通过mongoose来操作JSON数据， 定义文档模型，Schema和Model
-const User = mongoose.model('user', new mongoose.Schema({
-  user: {type:String,require:true},
-  age: {type:Number,require:true}
-}))
-// String Number  ...create/remove/update/Find/FindOne
-User.create({
-  user:'zhangsan',
-  age:18
-},function(err,doc){
-  if(!err){
-    console.log(doc)
-  }else{
-    console.log(err)
-  }
-})
+// mongoose.connection.on('connected', function(){
+//   console.log("mongo connect success")
+// })
+// // 通过mongoose来操作JSON数据， 定义文档模型，Schema和Model
+// const User = mongoose.model('user', new mongoose.Schema({
+//   user: {type:String,require:true},
+//   age: {type:Number,require:true}
+// }))
+// // String Number  ...create/remove/update/Find/FindOne
+// User.create({
+//   user:'zhangsan',
+//   age:18
+// },function(err,doc){
+//   if(!err){
+//     console.log(doc)
+//   }else{
+//     console.log(err)
+//   }
+// })

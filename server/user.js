@@ -1,6 +1,6 @@
 const express = require('express')
 const Router = express.Router()
-const models = require('./model')
+const model = require('./model')
 const User = model.getModel('user')
 const utils = require('utility')
 const _filter = {'pwd':0, '_v':0}
@@ -11,32 +11,32 @@ Router.get('/list', function(req,res){
   })
 })
 
+Router.post('./register', function(req,res){
+  const {user,pwd,type} = req.body
+  User.findOne({user:user},function(err,doc){
+    if(doc){
+      return res.json({code:1, msg:"重复!!!"})
+    }
+    User.create({user,pwd:md5Pwd(pwd),type}, _filter, function(e,d){
+      if(e){
+        return res.json({code:1, msg:"后端错误!!!"})
+      }
+      return res.json({code:0})
+    })
+  })
+})
+
 Router.post('./login', function(req,res){
   const {user, pwd} = req.body
   User.findOne({user,pwd:md5Pwd(pwd)}, _filter, function(err,doc){
     if(!doc){
-      return res.json({code:1, msg:"wrong user or pwd!!!"})
+      return res.json({code:1, msg:"用户名或密码错误"})
     }
     res.cookie('userid', doc._id)
     return res.json({code:0,data:doc})
   })
 })
 
-
-Router.post('./register', function(req,res){
-  const {user,pwd,type} = req.body
-  User.findOne({user:user},function(err,doc){
-    if(doc){
-      return res.json({code:1, msg:"repeat!!!"})
-    }
-    User.create({user,pwd:md5Pwd(pwd),type}, _filter, function(e,d){
-      if(e){
-        return res.json({code:1, msg:"back-end error!!!"})
-      }
-      return res.json({code:0})
-    })
-  })
-})
 Router.get('/info', function(req,res){
   const {userid} = req.cookies
   if(!userid){
@@ -44,7 +44,7 @@ Router.get('/info', function(req,res){
   }
   User.findOne({_id:userid}, function(err,doc){
     if(err){
-      return res.json({code:1, msg:'back-end error!!!'})
+      return res.json({code:1, msg:'后端错误'})
     }
     if(doc){
       return res.json({code:0,data:doc})

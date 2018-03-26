@@ -1,8 +1,13 @@
 import React from "react"
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
+// import { loadData } from '../../redux/user.redux'
+// import { connect } from 'react-router'
 @withRouter
-
+// @connect(
+//   null,
+//   {loadData}
+// )
 class AuthRoute extends React.Component{
   componentDidMount(){
     const publicList = ['/login', '/register']
