@@ -67,8 +67,9 @@ currently, CRUD
 * redux 管理所有数据      
 
 ```     
-// 简洁好用的发送请求库
-npm install axios --save    
+// 简洁好用的发送请求库(端口不一致；统一发送）
+npm install axios --save    
+
 ```       
 
 * Step: 6 React Router  
