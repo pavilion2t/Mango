@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
-const DB_URL = 'mongodb://127.0.0.1:27017/chat'
+const DB_URL = 'mongodb://localhost:27017/chat'
 mongoose.connect(DB_URL)
 
 const models = {
   user: {
-    // 'user': {type:String, require:true},
+    'user': {type:String, require:true},
     'pwd': {type:String, require:true},
     'type': {type:String, require:true},
 
@@ -15,7 +15,9 @@ const models = {
     'company':{type:String},
     'money':{type:String}
   },
-  chat:{}
+  chat:{
+
+  }
 }
 
 for(let m in models){

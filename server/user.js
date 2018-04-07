@@ -5,24 +5,35 @@ const User = model.getModel('user')
 const utils = require('utility')
 const _filter = {'pwd':0, '_v':0}
 
-Router.get('/list', function(req,res){
-  User.find({}, function(err,doc){
-    return res.json(doc)
-  })
-})
-
 Router.post('./register', function(req,res){
   const {user,pwd,type} = req.body
   User.findOne({user:user},function(err,doc){
     if(doc){
       return res.json({code:1, msg:"重复!!!"})
     }
-    User.create({user,pwd:md5Pwd(pwd),type}, _filter, function(e,d){
+    const userModel = new User({user,type,pwd:md5Pwd(pwd)})
+    userModel.save(function(e,d){
       if(e){
         return res.json({code:1, msg:"后端错误!!!"})
       }
-      return res.json({code:0})
+      const {user, typr, _id} = d
+      res.cookie('userid', _id)
+      return res.json({code:0, data:{user, type, _id}})
     })
+  })
+})
+
+Router.post('./update', function(req,res){
+  const userid = req.cookie.userid
+  if(!userid){
+    return json.dumps({code: 1})
+  }
+  const body = req.body
+  User.findByIdUpdate(userid,body,function(err,doc){
+    const data = Object.assign({}, {
+      user: doc.user, type:doc.type
+    }, body)
+    return {code:0, data}
   })
 })
 
@@ -38,9 +49,9 @@ Router.post('./login', function(req,res){
 })
 
 Router.get('/info', function(req,res){
-  const {userid} = req.cookies
+  // const {userid} = req.cookies
   if(!userid){
-    return res.json({code:1})
+    return res.json({code:0})
   }
   User.findOne({_id:userid}, function(err,doc){
     if(err){
@@ -49,6 +60,12 @@ Router.get('/info', function(req,res){
     if(doc){
       return res.json({code:0,data:doc})
     }
+  })
+})
+
+Router.get('/list', function(req,res){
+  User.find({}, function(err,doc){
+    return res.json(doc)
   })
 })
 

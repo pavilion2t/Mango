@@ -11,21 +11,20 @@ import reducers from './reducer.js'
 import './config'
 import AuthRoute from './component/authroute/authroute'
 import BossInfo from './container/bossinfo/bossinfo'
+import GeniusInfo from './container/geniusinfo/geniusinfo'
 
 let store = createStore(reducers, applyMiddleware(thunk))
-function Boss(){
-  return <h2>Boss</h2>
-}
+
 ReactDOM.render(
-   <BrowserRouter>
      <Provider store={store}>
+       <BrowserRouter>
        <div>
          <AuthRoute></AuthRoute>
-         <Route path='/bossInfo' component={BossInfo}></Route>
-         <Route path='/boss' component={Boss}></Route>
+         <Route path='/bossinfo' component={BossInfo}></Route>
+         <Route path='/geniusinfo' component={GeniusInfo}></Route>
          <Route path='/login' component={Login}></Route>
          <Route path='/register' component={Register}></Route>
        </div>
-     </Provider>
-   </BrowserRouter>,
+       </BrowserRouter>
+     </Provider>,
 document.getElementById('root'));
