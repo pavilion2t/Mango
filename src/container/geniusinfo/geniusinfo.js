@@ -3,6 +3,8 @@ import { NavBar, InputItem, TextAreaItem, Button } from 'antd-mobile'
 import { AvatarSelector } from '../../component/avatar-selector/avatar-selector'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
+import update from '../redux/user.redux.js'
+
 @connect(
   state=>state.user,
   {update}
@@ -28,7 +30,7 @@ class GeniusInfo extends React.Component {
         {this.props.redirectTo?<Redirect to={this.props.redirectTo}></Redirect>:null}
         <NavBar>fulfill GeniusInfo page</NavBar>
         <AvatarSelector
-          selectActive={(imgname)=>{ this.setState(avatar: imgname)}}>
+          selectActive={(imgname)=>{ this.setState({avatar: imgname})}}>
         </AvatarSelector>
         <InputItem onChange={(v)=>this.onChange('title',v)}>求职岗位</InputItem>
         <TextAreaItem

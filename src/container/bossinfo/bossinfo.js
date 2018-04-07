@@ -29,7 +29,7 @@ class BossInfo extends React.Component {
         {this.props.redirectTo?<Redirect to={this.props.redirectTo}></Redirect>:null}
         <NavBar>fulfill BossInfo page</NavBar>
         <AvatarSelector
-          selectActive={(imgname)=>{ this.setState(avatar: imgname)}}>
+          selectActive={(imgname)=>{ this.setState({avatar: imgname})}}>
         </AvatarSelector>
         <InputItem onChange={(v)=>this.onChange('title',v)}>招聘职位</InputItem>
         <InputItem onChange={(v)=>this.onChange('company',v)}>公司名称</InputItem>
