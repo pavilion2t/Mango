@@ -1,21 +1,16 @@
 import React from 'react'
-import axios from 'axios'
-import { connect } from 'react-redux'
-import { getUserList } from '../../redux/chatuser.redux'
+import PropTypes from 'prop-types'
+import {Card, WhiteSpace, WingBlank} from 'antd-mobile'
 
-@connect(
-  state => state.chatuser,
-  { getUserList }
-)
-class Boss extends React.Component{
-
-  componentDidMount(){
-    this.props.getUserList("genius")
+class UserCard extends React.Component{
+  static propTypes = {
+    userList: PropTypes.array.required
   }
 
   render(){
     const Header = Card.Header
     const Body = Card.Body
+
     return (
       <WingBlank>
         {this.props.userList.map(v=>(
@@ -26,9 +21,11 @@ class Boss extends React.Component{
               extra={<span>{v.title}</span>}></Header>
           </Card>: null
           <Body>
+            {v.type=='boss'?<div>公司：{v.company}</div>:null}
             {v.desc.split('\n').map(v=>(
-              <div key={v}>{v}</div>
+              <div key={d}>{d}</div>
             ))}
+            {v.type=='boss'?<div>薪资：{v.money}</div>:null}
           </Body>
         ))}
       </WingBlank>
@@ -36,4 +33,4 @@ class Boss extends React.Component{
   }
 }
 
-export default Boss
+export default UserCard

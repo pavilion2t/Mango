@@ -19,9 +19,15 @@ export function user(state=initstate, action){
       return {...state, msg:'',redirectTo:getRedirectPath(action.payload), isAuth: true, ...action.payload}
     case ERROR_MSG:
       return {...state, isAuth: false, msg: action.msg}
+    case LOGOUT:
+      return {...initstate, redirectTo:'./login'}
     default:
       return state
   }
+}
+
+export function logoutSubmit(){
+
 }
 
 function authSuccess(data){
