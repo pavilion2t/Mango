@@ -3,7 +3,7 @@ import { getRedirectPath } from '../utils'
 const ERROR_MSG = 'ERROR_MSG'
 const LOAD_DATA = 'LOAD_DATA'
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
-
+const LOGOUT = 'LOGOUT'
 const initstate = {
   redirectTo: '',
   isAuth: false,
