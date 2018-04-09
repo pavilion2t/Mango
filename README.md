@@ -75,4 +75,12 @@ npm install axios --save    
 * Step: 6 React Router  
 ```  
 yarn add react-router-dom
-```
+```   
+
+* Step: 7 Register/Login  
+validate by cookie   
+```   
+npm install cookie-parser --save     
+```  
+loading page => login => inner page  
+
